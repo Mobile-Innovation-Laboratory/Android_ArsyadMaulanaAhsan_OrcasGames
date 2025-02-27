@@ -24,8 +24,8 @@ Follow these steps to set up and run the application:
    gradlew.bat run
    ```
 ## Features
-### 🔄 Integrasi Firestore & Room & Retrofit
--Implementasi Room(Local Storage) yang dibarengin dengan Firestore dan penggunaan API Rawg menggunakan Retrofit
+### 🔄 Integrasi Firestore & Room & Retrofit & Firebase Authentication
+-Implementasi Room(Local Storage) yang dibarengin dengan Firestore dan penggunaan API Rawg menggunakan Retrofit serta fitur Autentikasi dari firebase
 ### 🌍 Variasi Games
 -Mengambil data games dari Rawg API
 ### 🛒 Pembelian & Transaksi
