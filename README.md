@@ -49,7 +49,7 @@ Follow these steps to set up and run the application:
 ![image](https://github.com/user-attachments/assets/465cb996-5e27-4901-830e-79bf1bf44834)
 ![image](https://github.com/user-attachments/assets/b371a205-bdfc-46e5-baaa-6730587cefb4)
 
-### For further context about the code just take a look at the each file **disclaimer only the important one that has Documentation **disclaimer the checkout system is not implemented yet cause i don't have enough time to finish it
+#### For further context about the code just take a look at the each file **disclaimer only the important one that has Documentation **disclaimer the checkout system and buy mechanism are not implemented yet cause i don't have enough time to finish it
 
 
 
