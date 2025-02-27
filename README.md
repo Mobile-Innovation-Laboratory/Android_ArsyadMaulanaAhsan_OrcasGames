@@ -1,3 +1,6 @@
+#OrcasGames
+## Description
+Aplikasi ini bertujuan untuk memudahkan pengguna dalam membeli, mengelola, dan menemukan game sesuai dengan preferensi mereka. Dengan antarmuka berbasis Jetpack Compose, pengguna dapat menjelajahi katalog game yang tersedia.
 ## How to Run the Application
 
 Follow these steps to set up and run the application:
