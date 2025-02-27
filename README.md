@@ -36,6 +36,7 @@ Follow these steps to set up and run the application:
 - Sesuaikan preferensi pengguna dalam menu pengaturan.
 ## 🎨 Desain UI Modern
 - **Swipeable Card** untuk interaksi lebih intuitif.
+- **Interaktif** untuk membuka semua menu yang tersedia anda harus "login" terlebih dahulu
 - **Modern Looks** UI terlihat modern.
 ## Sneak Peak App
 ![image](https://github.com/user-attachments/assets/b58da2ce-467c-488f-94e0-8bd96b50af50)
