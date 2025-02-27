@@ -31,6 +31,7 @@ data class Game2(
     val imageRes: Int,
     val description: String = "",
 )
+// Used In HomeScreen
 val gamesList = listOf(
     Game(
         id = "1",
@@ -89,7 +90,7 @@ val gamesList = listOf(
         description = "Aloy returns in a breathtaking post-apocalyptic adventure."
     )
 )
-
+// Used in GameList Screen
 val gameListt = listOf(
     Game(
         id = "1",
@@ -229,7 +230,7 @@ val gameListt = listOf(
         description = "The next evolution of the Monster Hunter series with a vast new ecosystem to explore."
     )
 )
-
+// Used in GameList Screen
 val upcomingGames = listOf(
     Game2(
         id = "1",
@@ -306,7 +307,7 @@ val upcomingGames = listOf(
 )
 
 
-
+// Used in Achievement Screen
 val sampleAchievements = listOf(
     Achievement(
         title = "First Purchase",

@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.sp
 import com.example.roomcompose.Object.Games
 import com.example.roomcompose.R
 
+//Used for Room and firebase data
 @Composable
 fun CardGametwo(
     game: Games,
