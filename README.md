@@ -25,6 +25,7 @@ Follow these steps to set up and run the application:
    ```
 ## Features
 ### 🔄 Integrasi Firestore & Room & Retrofit
+-Implementasi Room(Local Storage) yang dibarengin dengan Firestore dan penggunaan API Rawg menggunakan Retrofit
 ### 🌍 Variasi Games
 -Mengambil data games dari Rawg API
 ### 🛒 Pembelian & Transaksi
