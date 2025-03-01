@@ -30,6 +30,7 @@ Follow these steps to set up and run the application:
 -Mengambil data games dari Rawg API
 ### 🛒 Pembelian & Transaksi
 - **Checkout belum tersedia (akan ada di update selanjutnya).**
+- **Buy Feature**
 ### 🎮 Achievement & Theme
 - **Toggle Tema**: Beralih antara mode terang dan gelap.
 - **Achievement**: Dapatkan pencapaian saat bermain dan membeli game.
@@ -42,15 +43,16 @@ Follow these steps to set up and run the application:
 ## Sneak Peak App
 ![image](https://github.com/user-attachments/assets/b58da2ce-467c-488f-94e0-8bd96b50af50)
 ![image](https://github.com/user-attachments/assets/a6350099-d575-41b4-8c14-b2d6e17fb6ee)
-![image](https://github.com/user-attachments/assets/4ea5d5c6-80c3-4004-8eea-4f45848f7eb9)
-![image](https://github.com/user-attachments/assets/3f3b501a-6852-4bc5-92c8-936327fda79b)
-![image](https://github.com/user-attachments/assets/7ade07af-fa91-4fbf-9845-1ad7725afe05)
+![image](https://github.com/user-attachments/assets/fa917d4e-3b07-47bf-87c0-60d00c509409)
+![image](https://github.com/user-attachments/assets/1fc8df3e-a126-4b7a-ba2f-ab0da9f933a1)
+![image](https://github.com/user-attachments/assets/f17ff445-31ad-4ae5-aa82-2adfead4184f)
+![image](https://github.com/user-attachments/assets/1f988ceb-f0e6-452a-860a-53a645bd22d8)
 ![image](https://github.com/user-attachments/assets/409a52b5-d3d6-4156-8027-afe1ddea2a0b)
 ![image](https://github.com/user-attachments/assets/4f6fc21c-5e46-446f-8616-d58c00eea2e4)
 ![image](https://github.com/user-attachments/assets/465cb996-5e27-4901-830e-79bf1bf44834)
 ![image](https://github.com/user-attachments/assets/b371a205-bdfc-46e5-baaa-6730587cefb4)
 
-#### For further context about the code just take a look at the each file **disclaimer only the important one that has Documentation **disclaimer the checkout system and buy mechanism are not implemented yet cause i don't have enough time to finish it
+#### For further context about the code just take a look at the each file **disclaimer only the important one that has Documentation **disclaimer the checkout system is not implemented yet
 
 
 
