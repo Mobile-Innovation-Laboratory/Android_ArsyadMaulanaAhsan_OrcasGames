@@ -52,6 +52,8 @@ Follow these steps to set up and run the application:
 ![image](https://github.com/user-attachments/assets/df9b883a-eb2b-4a39-b507-886d10f94729)
 ![image](https://github.com/user-attachments/assets/465cb996-5e27-4901-830e-79bf1bf44834)
 ![image](https://github.com/user-attachments/assets/b371a205-bdfc-46e5-baaa-6730587cefb4)
+![image](https://github.com/user-attachments/assets/6ee82e4e-73e1-42bb-ab78-b24c753c205f)
+![image](https://github.com/user-attachments/assets/3a7c4d73-a37a-4d98-920c-94cacca1ca8e)
 
 #### For further context about the code just take a look at the each file **disclaimer only the important one that has Documentation **disclaimer the checkout system and detail page for every game are not implemented yet
 
