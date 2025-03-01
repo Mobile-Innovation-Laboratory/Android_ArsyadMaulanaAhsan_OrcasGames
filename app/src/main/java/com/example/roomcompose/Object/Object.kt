@@ -32,6 +32,20 @@ data class Games(
     constructor() : this(0, "", 0, "", 0)
 }
 
+/**
+ * Entitas yang merepresentasikan game yang telah dibeli oleh pengguna.
+ * Class ini digunakan sebagai model data untuk penyimpanan dalam database Room.
+ *
+ * @property id String ID unik untuk mengidentifikasi game, digunakan sebagai primary key.
+ * @property title String Judul atau nama game.
+ * @property price Double Harga game dalam format desimal.
+ * @property releaseDate String Tanggal rilis game dalam format string.
+ * @property releaseYear Int Tahun rilis game.
+ * @property imageRes Int Resource ID untuk gambar/icon game.
+ * @property description String Deskripsi atau informasi tambahan tentang game. Default: string kosong.
+ * @property purchaseDate Long Timestamp yang menunjukkan kapan game dibeli.
+ *                          Default: waktu sistem saat objek dibuat.
+ */
 @Entity(tableName = "purchased_games")
 data class PurchasedGame(
     @PrimaryKey val id: String,

@@ -51,11 +51,21 @@ abstract class GamesDB: RoomDatabase() {
 
 @Database(entities = [PurchasedGame::class], version = 1, exportSchema = false)
 abstract class PurchasedGameDB : RoomDatabase() {
+    /**
+     * Memberikan akses ke Data Access Object untuk entitas PurchasedGame.
+     *
+     * @return PurchasedGameDao instance untuk melakukan operasi database pada entitas PurchasedGame.
+     */
     abstract fun purchasedGameDao(): PurchasedGameDao
 
     companion object {
         @Volatile
         private var INSTANCE: PurchasedGameDB? = null
+        /**
+         * Mendapatkan atau membuat instance database purchased games.
+         * @param context Context aplikasi yang digunakan untuk inisialisasi database.
+         * @return PurchasedGameDB instance database yang dapat digunakan untuk operasi database.
+         */
         fun getPurchasedGamesDatabase(context: Context): PurchasedGameDB {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(

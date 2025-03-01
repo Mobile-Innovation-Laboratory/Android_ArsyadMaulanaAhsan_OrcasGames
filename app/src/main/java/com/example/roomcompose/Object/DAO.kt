@@ -36,12 +36,30 @@ interface MyGamesDao {
 @Dao
 interface PurchasedGameDao {
 
+    /**
+     * Menyimpan game yang dibeli ke dalam database.
+     * Jika game dengan ID yang sama sudah ada, akan menggantikannya (REPLACE).
+     *
+     * @param game PurchasedGame objek game yang akan disimpan.
+     */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPurchasedGame(game: PurchasedGame)
 
+    /**
+     * Mengambil semua game yang telah dibeli dari database.
+     * Metode ini mengembalikan Flow yang akan mengemisikan nilai baru setiap kali
+     * ada perubahan pada tabel purchased_games.
+     *
+     * @return Flow<List<PurchasedGame>> aliran daftar game yang dibeli.
+     */
     @Query("SELECT * FROM purchased_games")
     fun getPurchasedGames(): Flow<List<PurchasedGame>>
 
+    /**
+     * Menghapus game yang dibeli berdasarkan ID.
+     *
+     * @param gameId String ID dari game yang akan dihapus.
+     */
     @Query("DELETE FROM purchased_games WHERE id = :gameId")
     suspend fun deletePurchasedGame(gameId: String)
 }
