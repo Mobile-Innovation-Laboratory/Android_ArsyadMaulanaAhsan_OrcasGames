@@ -47,8 +47,8 @@ Follow these steps to set up and run the application:
 ![image](https://github.com/user-attachments/assets/1fc8df3e-a126-4b7a-ba2f-ab0da9f933a1)
 ![image](https://github.com/user-attachments/assets/f17ff445-31ad-4ae5-aa82-2adfead4184f)
 ![image](https://github.com/user-attachments/assets/1f988ceb-f0e6-452a-860a-53a645bd22d8)
-![image](https://github.com/user-attachments/assets/409a52b5-d3d6-4156-8027-afe1ddea2a0b)
-![image](https://github.com/user-attachments/assets/4f6fc21c-5e46-446f-8616-d58c00eea2e4)
+![image](https://github.com/user-attachments/assets/b6bb767d-ea95-4fd7-8386-9ab602e2af79)
+![image](https://github.com/user-attachments/assets/df9b883a-eb2b-4a39-b507-886d10f94729)
 ![image](https://github.com/user-attachments/assets/465cb996-5e27-4901-830e-79bf1bf44834)
 ![image](https://github.com/user-attachments/assets/b371a205-bdfc-46e5-baaa-6730587cefb4)
 
