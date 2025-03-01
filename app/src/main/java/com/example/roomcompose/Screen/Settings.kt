@@ -36,6 +36,8 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -56,7 +58,7 @@ import com.example.roomcompose.R
 @Composable
 fun Settings(viewModel: MyGamesViewModel, navController: NavController, authView: AuthViewModel) {
     val isDarkTheme = remember { mutableStateOf(true) }
-
+    val user by authView.user.collectAsState()
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -65,37 +67,36 @@ fun Settings(viewModel: MyGamesViewModel, navController: NavController, authView
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         // Profile Section
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp),
-            shape = RoundedCornerShape(16.dp),
-            colors = CardDefaults.cardColors(containerColor = if (isDarkTheme.value) Color.DarkGray else Color.LightGray)
-        ) {
-            Column(
-                modifier = Modifier.padding(16.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ){
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                shape = RoundedCornerShape(16.dp),
+                colors = CardDefaults.cardColors(containerColor = if (isDarkTheme.value) Color.DarkGray else Color.LightGray)
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.games),
-                    contentDescription = "Profile Image",
-                    modifier = Modifier
-                        .size(80.dp)
-                        .clip(CircleShape)
-                        .background(Color.Gray)
-                )
-                Spacer(modifier = Modifier.height(8.dp))
-                Text(
-                    text = "John Doe",
-                    fontSize = 22.sp,
-                    color = if (isDarkTheme.value) Color.White else Color.Black,
-                    fontWeight = FontWeight.Bold
-                )
-                Text(
-                    text = "johndoe@email.com",
-                    fontSize = 14.sp,
-                    color = if (isDarkTheme.value) Color.LightGray else Color.DarkGray
-                )
+                Column(
+                    modifier = Modifier.padding(16.dp).padding(start = 100.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.duneawakening),
+                        contentDescription = "Profile Image",
+                        modifier = Modifier
+                            .size(80.dp)
+                            .clip(CircleShape)
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    Text(
+                        text = user?.email ?: "No Email",
+                        fontSize = 20.sp,
+                        color = if (isDarkTheme.value) Color.LightGray else Color.DarkGray
+                    )
+                }
             }
         }
 

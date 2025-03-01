@@ -38,6 +38,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.roomcompose.Model.AuthViewModel
+import com.example.roomcompose.Model.PurchasedGamesViewModel
 import com.example.roomcompose.Object.Games
 import com.example.roomcompose.R
 import com.example.roomcompose.utils.CardGametwo
@@ -46,7 +47,7 @@ import com.example.roomcompose.utils.SwipeableGameCards
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(viewModel: MyGamesViewModel, navController: NavController, authView: AuthViewModel) {
+fun HomeScreen(viewModel: MyGamesViewModel, navController: NavController, authView: AuthViewModel,purchasedModel: PurchasedGamesViewModel) {
     val gamesList by viewModel.allGames.collectAsState(initial = emptyList())
     val selectedTab = remember { mutableStateOf(0) }
     var currentIndex by remember { mutableStateOf(0) }
@@ -151,7 +152,7 @@ fun HomeScreen(viewModel: MyGamesViewModel, navController: NavController, authVi
             Text(
                 "Featured & Recommend", fontSize = 35.sp, color = if (isDarkTheme.value) colorResource(id = R.color.white) else colorResource(id = R.color.black)
             )
-            SwipeableGameCards()
+            SwipeableGameCards(purchasedModel)
             Row() {
                 Text(
                     "All Games", fontSize = 20.sp, color = if (isDarkTheme.value) colorResource(id = R.color.white) else colorResource(id = R.color.black)

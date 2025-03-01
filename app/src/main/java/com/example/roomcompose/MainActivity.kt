@@ -68,7 +68,7 @@ class MainActivity : ComponentActivity() {
             NavHost(navController = navController, startDestination = "home") {
                 composable("signup") { SignUp(navController, authViewModel) }
                 composable("login") { SignIn(navController, authViewModel) }
-                composable("home") { HomeScreen(gamesViewModel, navController, authViewModel) }
+                composable("home") { HomeScreen(gamesViewModel, navController, authViewModel,purchasedViewModel) }
                 composable("settings") { Settings(gamesViewModel, navController, authViewModel) }
                 composable("gamelist") { GamesScreen(navController, authViewModel, purchasedViewModel) }
                 composable("achievement") { AchievementScreen(sampleAchievements,navController, authViewModel) }
