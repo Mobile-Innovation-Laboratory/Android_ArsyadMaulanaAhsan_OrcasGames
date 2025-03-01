@@ -36,6 +36,7 @@ Follow these steps to set up and run the application:
 - **Achievement**: Dapatkan pencapaian saat bermain dan membeli game.
 ### ⚙️ Pengaturan
 - Sesuaikan preferensi pengguna dalam menu pengaturan.
+- Dapat menambahkan game baru jika pengguna sudah login.
 ## 🎨 Desain UI Modern
 - **Swipeable Card** untuk interaksi lebih intuitif.
 - **Interaktif** untuk membuka semua menu yang tersedia anda harus "login" terlebih dahulu
