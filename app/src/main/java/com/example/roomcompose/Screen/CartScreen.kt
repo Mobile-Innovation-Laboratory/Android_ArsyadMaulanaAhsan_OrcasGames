@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -18,23 +19,26 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.roomcompose.Model.AuthViewModel
+import com.example.roomcompose.Model.PurchasedGamesViewModel
+import com.example.roomcompose.Object.PurchasedGame
 import com.example.roomcompose.R
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CartScreen(navController: NavController, authView: AuthViewModel) {
-    var cartItems by remember { mutableStateOf(sampleCartItems) }
+fun CartScreen(
+    navController: NavController,
+    authView: AuthViewModel,
+    viewModel: PurchasedGamesViewModel
+) {
+    val cartItems by viewModel.purchasedGames.observeAsState(emptyList())
     val selectedTab = remember { mutableStateOf(0) }
-    var currentIndex by remember { mutableStateOf(0) }
-
-    val user by authView.user.collectAsState()
 
     val isDarkTheme = remember { mutableStateOf(true) }
     Scaffold(
-        containerColor = if (isDarkTheme.value) colorResource(id = R.color.black) else colorResource(
+        containerColor = if (isDarkTheme.value) Color(0xFF121212) else colorResource(
             id = R.color.white
         ),
-
         // 🔹 TOP BAR
         topBar = {
             TopAppBar(
@@ -42,8 +46,9 @@ fun CartScreen(navController: NavController, authView: AuthViewModel) {
                     containerColor = if (isDarkTheme.value) Color.Black else Color.White,
                     titleContentColor = if (isDarkTheme.value) Color.White else Color.Black,
                 ),
-                title = { Text("Cart", fontWeight = FontWeight.Bold) },
+                title = { Text("Games", fontWeight = FontWeight.Bold) },
                 actions = {
+
                     IconButton(onClick = { isDarkTheme.value = !isDarkTheme.value }) {
                         Icon(
                             painter = if (isDarkTheme.value) painterResource(id = R.drawable.moon) else painterResource(
@@ -98,16 +103,19 @@ fun CartScreen(navController: NavController, authView: AuthViewModel) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color(0xFF121212))
-                .padding(16.dp)
                 .padding(paddingValues)
+                .padding(16.dp)
+                .background(
+                    if (isDarkTheme.value) Color(0xFF121212) else colorResource(
+                        id = R.color.white
+                    )
+                )
         ) {
             Text(
                 text = "Your Cart",
-                color = Color.White,
+                color = if (isDarkTheme.value)Color.White else colorResource(id = R.color.black),
                 fontSize = 24.sp,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(bottom = 16.dp)
+                fontWeight = FontWeight.Bold
             )
 
             LazyColumn(
@@ -115,38 +123,40 @@ fun CartScreen(navController: NavController, authView: AuthViewModel) {
             ) {
                 items(cartItems) { item ->
                     CartItemCard(item) { removedItem ->
-                        cartItems = cartItems.filter { it.id != removedItem.id }
+                        viewModel.removeGame(removedItem)
                     }
                 }
             }
 
             Button(
-                onClick = { },
-                modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE2F163))
+                onClick = { /* Implement Checkout */ },
+                modifier = Modifier.fillMaxWidth()
+                , colors = ButtonDefaults.buttonColors(
+                    containerColor = colorResource(id = R.color.yellowpm)
+                )
             ) {
                 Text(
                     text = "Checkout",
-                    color = Color.Black,
                     fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(8.dp)
+                    color = if (isDarkTheme.value)Color.White else colorResource(id = R.color.black),
+                    fontWeight = FontWeight.Bold
                 )
             }
         }
     }
-
 }
 
 @Composable
-fun CartItemCard(item: CartItem, onRemove: (CartItem) -> Unit) {
+fun CartItemCard(item: PurchasedGame, onRemove: (PurchasedGame) -> Unit) {
+    val snackbarHostState = remember { SnackbarHostState() }
+    val scope = rememberCoroutineScope()
     Card(
-        shape = RoundedCornerShape(12.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFF232222)),
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 8.dp)
-    ) {
+            .padding(vertical = 8.dp),
+        colors = CardDefaults.cardColors(containerColor = Color(0xFF232222)),
+        shape = RoundedCornerShape(18.dp),
+        ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.padding(16.dp)
@@ -163,13 +173,13 @@ fun CartItemCard(item: CartItem, onRemove: (CartItem) -> Unit) {
                     .padding(start = 16.dp)
             ) {
                 Text(
-                    text = item.name,
+                    text = item.title,
                     color = Color.White,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = "${'$'}${item.price}",
+                    text = "$${item.price}",
                     color = Color(0xFFE2F163),
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Medium
@@ -177,22 +187,33 @@ fun CartItemCard(item: CartItem, onRemove: (CartItem) -> Unit) {
             }
 
             Button(
-                onClick = { onRemove(item) },
+                onClick = {
+                    onRemove(item)
+                    scope.launch {
+                        snackbarHostState.showSnackbar(
+                            message = "✅ ${item.title} Removed from the cart!",
+                            actionLabel = "Delete",
+                            duration = SnackbarDuration.Short
+                        )
+                    }
+                },
                 colors = ButtonDefaults.buttonColors(containerColor = Color.Red)
             ) {
-                Text("Remove", color = Color.White)
+                Text("Remove")
             }
         }
     }
+    SnackbarHost(
+        hostState = snackbarHostState,
+        modifier = Modifier
+            .padding(bottom = 40.dp),
+    ) { data ->
+        Snackbar(
+            snackbarData = data,
+            shape = RoundedCornerShape(12.dp),
+            containerColor = Color.Black,
+            contentColor = Color.White,
+            actionColor = Color.Green
+        )
+    }
 }
-
-// Sample data
-data class CartItem(val id: Int, val name: String, val price: Double, val imageRes: Int)
-
-val sampleCartItems = listOf(
-    CartItem(1, "Elden Ring", 59.99, R.drawable.eldenring),
-    CartItem(2, "Star Wars", 39.99, R.drawable.starwars),
-    CartItem(3, "Zelda", 49.99, R.drawable.zelda),
-    CartItem(4, "Hell Divers 2", 49.99, R.drawable.helldivers2),
-    CartItem(5, "Hogwarts Legacy", 49.99, R.drawable.hogwarts)
-)

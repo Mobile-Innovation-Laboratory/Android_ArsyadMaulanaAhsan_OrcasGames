@@ -32,3 +32,15 @@ data class Games(
     constructor() : this(0, "", 0, "", 0)
 }
 
+@Entity(tableName = "purchased_games")
+data class PurchasedGame(
+    @PrimaryKey val id: String,
+    val title: String,
+    val price: Double,
+    val releaseDate: String,
+    val releaseYear: Int,
+    val imageRes: Int,
+    val description: String = "",
+    val purchaseDate: Long = System.currentTimeMillis() // Store when it was purchased
+)
+

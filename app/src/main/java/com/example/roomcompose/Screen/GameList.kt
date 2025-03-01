@@ -40,12 +40,13 @@ import coil.compose.rememberAsyncImagePainter
 import com.example.roomcompose.Model.AuthViewModel
 import com.example.roomcompose.Model.GameViewModel
 import com.example.roomcompose.Model.Gamee
+import com.example.roomcompose.Model.PurchasedGamesViewModel
 import com.example.roomcompose.utils.SwipeableGameCards2
 import com.example.roomcompose.utils.SwipeableGameCards3
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun GamesScreen(navController: NavController, authView: AuthViewModel) {
+fun GamesScreen(navController: NavController, authView: AuthViewModel, purchasedModel: PurchasedGamesViewModel) {
     val viewModel: GameViewModel = viewModel()
     val games = viewModel.games.value
     val user by authView.user.collectAsState()
@@ -160,7 +161,7 @@ fun GamesScreen(navController: NavController, authView: AuthViewModel) {
                         fontSize = 20.sp,
                         color = if (isDarkTheme.value)colorResource(id = R.color.white) else colorResource(id = R.color.black)
                     )
-                    SwipeableGameCards2()
+                    SwipeableGameCards2(purchasedModel)
                     Spacer(modifier = Modifier.height(16.dp))
 
                     Text(
@@ -168,7 +169,7 @@ fun GamesScreen(navController: NavController, authView: AuthViewModel) {
                         fontSize = 20.sp,
                         color = if (isDarkTheme.value)colorResource(id = R.color.white) else colorResource(id = R.color.black)
                     )
-                    SwipeableGameCards3()
+                    SwipeableGameCards3(purchasedModel)
                 }
 
             }

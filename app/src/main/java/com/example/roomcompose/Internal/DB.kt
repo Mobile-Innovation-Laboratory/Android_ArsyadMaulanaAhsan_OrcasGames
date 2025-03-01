@@ -4,8 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.roomcompose.Model.Gamee
 import com.example.roomcompose.Object.Games
 import com.example.roomcompose.Object.MyGamesDao
+import com.example.roomcompose.Object.PurchasedGame
+import com.example.roomcompose.Object.PurchasedGameDao
+import com.example.roomcompose.utils.Game2
 
 @Database(entities = [Games::class], version = 1)
 abstract class GamesDB: RoomDatabase() {
@@ -44,3 +48,25 @@ abstract class GamesDB: RoomDatabase() {
         }
     }
 }
+
+@Database(entities = [PurchasedGame::class], version = 1, exportSchema = false)
+abstract class PurchasedGameDB : RoomDatabase() {
+    abstract fun purchasedGameDao(): PurchasedGameDao
+
+    companion object {
+        @Volatile
+        private var INSTANCE: PurchasedGameDB? = null
+        fun getPurchasedGamesDatabase(context: Context): PurchasedGameDB {
+            return INSTANCE ?: synchronized(this) {
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    PurchasedGameDB::class.java,
+                    "purchased_games"
+                ).build()
+                INSTANCE = instance
+                instance
+            }
+        }
+    }
+}
+

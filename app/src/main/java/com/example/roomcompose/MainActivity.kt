@@ -17,9 +17,13 @@ import androidx.navigation.compose.rememberNavController
 import com.example.roomcompose.Internal.AuthRepository
 import com.example.roomcompose.Internal.GamesDB
 import com.example.roomcompose.Internal.MyGamesRepository
+import com.example.roomcompose.Internal.PurchasedGameDB
 import com.example.roomcompose.Model.AuthViewModel
 import com.example.roomcompose.Model.AuthViewModelFactory
 import com.example.roomcompose.Model.MyGamesViewModelFactory
+import com.example.roomcompose.Model.PurchasedGamesRepo
+import com.example.roomcompose.Model.PurchasedGamesViewModel
+import com.example.roomcompose.Model.PurchasedGamesViewModelFactory
 import com.example.roomcompose.Screen.AchievementScreen
 import com.example.roomcompose.Screen.AddGameScreen
 import com.example.roomcompose.Screen.CartScreen
@@ -41,6 +45,10 @@ class MainActivity : ComponentActivity() {
         val database = GamesDB.getMyGamesDatabase(this)
         val repository = MyGamesRepository(database.GamesDao())
 
+        // Initialize Purchased Game Database
+        val purchasedDatabase = PurchasedGameDB.getPurchasedGamesDatabase(this)
+        val purchasedRepo = PurchasedGamesRepo(purchasedDatabase.purchasedGameDao())
+
         // Create ViewModel using Factory
         val viewModelFactory = MyGamesViewModelFactory(repository)
         val gamesViewModel = ViewModelProvider(this, viewModelFactory)[MyGamesViewModel::class.java]
@@ -49,20 +57,22 @@ class MainActivity : ComponentActivity() {
         val authRepository = AuthRepository() // Ensure this is initialized properly
         val authViewModelFactory = AuthViewModelFactory(authRepository)
         val authViewModel = ViewModelProvider(this, authViewModelFactory)[AuthViewModel::class.java]
+
+// Create ViewModel using Factory
+        val purchasedViewModelFactory = PurchasedGamesViewModelFactory(purchasedRepo)
+        val purchasedViewModel = ViewModelProvider(this, purchasedViewModelFactory)[PurchasedGamesViewModel::class.java]
+
         setContent {
             val navController = rememberNavController()
-
-            val user = authViewModel.user.collectAsState().value
-
 
             NavHost(navController = navController, startDestination = "home") {
                 composable("signup") { SignUp(navController, authViewModel) }
                 composable("login") { SignIn(navController, authViewModel) }
                 composable("home") { HomeScreen(gamesViewModel, navController, authViewModel) }
                 composable("settings") { Settings(gamesViewModel, navController, authViewModel) }
-                composable("gamelist") { GamesScreen(navController, authViewModel) }
+                composable("gamelist") { GamesScreen(navController, authViewModel, purchasedViewModel) }
                 composable("achievement") { AchievementScreen(sampleAchievements,navController, authViewModel) }
-                composable("cart") { CartScreen(navController, authViewModel) }
+                composable("cart") { CartScreen(navController, authViewModel,purchasedViewModel) }
                 composable("addgame") { AddGameScreen(gamesViewModel, navController) }
 
             }

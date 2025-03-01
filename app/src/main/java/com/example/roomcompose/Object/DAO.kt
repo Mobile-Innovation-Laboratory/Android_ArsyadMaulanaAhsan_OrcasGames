@@ -3,6 +3,7 @@ package com.example.roomcompose.Object
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 
@@ -30,4 +31,17 @@ interface MyGamesDao {
      */
     @Query("DELETE FROM gamesinfo")
     suspend fun deleteAllGames()
+}
+
+@Dao
+interface PurchasedGameDao {
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertPurchasedGame(game: PurchasedGame)
+
+    @Query("SELECT * FROM purchased_games")
+    fun getPurchasedGames(): Flow<List<PurchasedGame>>
+
+    @Query("DELETE FROM purchased_games WHERE id = :gameId")
+    suspend fun deletePurchasedGame(gameId: String)
 }

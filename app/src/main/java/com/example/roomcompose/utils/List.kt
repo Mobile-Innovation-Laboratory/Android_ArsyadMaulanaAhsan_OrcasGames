@@ -4,6 +4,7 @@ import androidx.annotation.DrawableRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.material.icons.outlined.Star
+import androidx.room.PrimaryKey
 
 import com.example.roomcompose.R
 
@@ -15,6 +16,7 @@ data class Game(
     val imageRes: Int,
     val description: String = "",
 )
+
 data class Achievement(
     val title: String,
     val description: String,
@@ -22,15 +24,17 @@ data class Achievement(
     val isCompleted: Boolean,
     val iconRes: Int
 )
+
 data class Game2(
-    val id: String,
+    @PrimaryKey val id: String,
     val title: String,
     val price: Double,
-    val releaseDate : String,
+    val releaseDate: String,
     val releaseYear: Int,
     val imageRes: Int,
     val description: String = "",
 )
+
 // Used In HomeScreen
 val gamesList = listOf(
     Game(
@@ -90,6 +94,7 @@ val gamesList = listOf(
         description = "Aloy returns in a breathtaking post-apocalyptic adventure."
     )
 )
+
 // Used in GameList Screen
 val gameListt = listOf(
     Game(
@@ -230,6 +235,7 @@ val gameListt = listOf(
         description = "The next evolution of the Monster Hunter series with a vast new ecosystem to explore."
     )
 )
+
 // Used in GameList Screen
 val upcomingGames = listOf(
     Game2(
