@@ -41,7 +41,7 @@ Follow these steps to set up and run the application:
 - **Swipeable Card** untuk interaksi lebih intuitif.
 - **Interaktif** untuk membuka semua menu yang tersedia anda harus "login" terlebih dahulu
 - **Modern Looks** UI terlihat modern.
-## Sneak Peak App
+## Sneak Peek App
 ![image](https://github.com/user-attachments/assets/b58da2ce-467c-488f-94e0-8bd96b50af50)
 ![image](https://github.com/user-attachments/assets/a6350099-d575-41b4-8c14-b2d6e17fb6ee)
 ![image](https://github.com/user-attachments/assets/fa917d4e-3b07-47bf-87c0-60d00c509409)
